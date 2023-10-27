@@ -2,7 +2,6 @@
 using Domain.Interfaces;
 using Domain.InterfacesServices;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sistema_Financeiro.Controllers

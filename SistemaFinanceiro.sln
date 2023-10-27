@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{E8373D24-8A5A-4D4A-99CE-9EB11F461A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema_Financeiro", "Sistema_Financeiro\Sistema_Financeiro.csproj", "{8EE5B2AC-391D-4577-8EFE-2D31615BA2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sistema_Financeiro", "Sistema_Financeiro\Sistema_Financeiro.csproj", "{8EE5B2AC-391D-4577-8EFE-2D31615BA2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7129A476-AAD7-4CE7-B6A9-CF50939C2DA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{7129A476-AAD7-4CE7-B6A9-CF50939C2DA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{F74E4E7B-A97D-4B99-9C14-F0D7EA426292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{F74E4E7B-A97D-4B99-9C14-F0D7EA426292}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Helpers", "4 - Helpers", "{107D2DCF-7DCC-4F9D-8E83-05379817D659}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - HelpConfig", "4 - HelpConfig", "{107D2DCF-7DCC-4F9D-8E83-05379817D659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers_", "Helpers_\Helpers_.csproj", "{CEF28359-084B-4FDB-AB01-D93BE8AE9CB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpConfig", "Helpers_\HelpConfig.csproj", "{CEF28359-084B-4FDB-AB01-D93BE8AE9CB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,5 @@
-using Domain.Interfaces;
-using Domain.InterfacesServices;
-using Domain.Services;
+using HelpConfig.HelpStartup;
 using Infra.Infra;
-using Infra.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,20 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddCors();
 
-builder.Services.AddDbContext<Contexto>(Options => Options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+var connectionMySql = builder.Configuration.GetConnectionString("Connection");
+builder.Services.AddDbContext<Contexto>(options =>
+options.UseMySql(connectionMySql, Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.30-mysql")));
 
-// Interfaces e Repositorios
-builder.Services.AddSingleton(typeof(IGeneric<>), typeof(RepositoryGeneric<>));
-builder.Services.AddSingleton<ICategoria, RepositoryCategoria>();
-builder.Services.AddSingleton<IDespesa, RepositoryDespesa>();
-builder.Services.AddSingleton<ISistemaFinanceiro, RepositorySistemaFinanceiro>();
-builder.Services.AddSingleton<IUsuarioSistemaFinanceiro, RepositoryUsuarioSistemaFinanceiro>();
-
-// Serviço  Dominio
-builder.Services.AddSingleton<IServiceCategoria, ServiceCategoria>();
-builder.Services.AddSingleton<IServiceDespesa, ServiceDespesa>();
-builder.Services.AddSingleton<ISistemaFinanceiroService, SistemaFinanceiroService>();
-builder.Services.AddSingleton<IUsuarioSistemaFinanceiroService, UsuarioSistemaFinanceiroService>();
 
 // Add Swagger
 builder.Services.AddSwaggerGen(c =>
@@ -94,12 +81,13 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+HelpStartup.ConfigureSingleton(builder.Services);
+
 var app = builder.Build();
 
 var devClient = "http://localhost:4200";
 
-app.UseCors(x =>
-x.AllowAnyOrigin()
+app.UseCors(x => x.AllowAnyOrigin()
 .AllowAnyMethod()
 .AllowAnyHeader()
 .WithOrigins(devClient));

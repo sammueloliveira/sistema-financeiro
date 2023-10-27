@@ -14,16 +14,6 @@ namespace Infra.Infra
         public DbSet<Despesa> Despesa { get; set; }
         public DbSet<SistemaFinanceiro> SistemaFinanceiro { get; set; }
         public DbSet<UsuarioSistemaFinanceiro> UsuarioSistemaFinanceiro { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(GetConnectionString());
-
-            base.OnConfiguring(optionsBuilder);
-        }
-        private string GetConnectionString()
-        {
-            return "Data Source=SAMUEL;Initial Catalog=SistemaFinanceiro;Integrated Security=True;Encrypt=false";
-        }
+     
     }
 }
