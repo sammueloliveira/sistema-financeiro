@@ -7,9 +7,9 @@ namespace Domain.Services
     public class SistemaFinanceiroService : ISistemaFinanceiroService
     {
         private readonly ISistemaFinanceiro _sistemaFinanceiro;
-        public SistemaFinanceiroService(ISistemaFinanceiro SistemaFinanceiro)
+        public SistemaFinanceiroService(ISistemaFinanceiro sistemaFinanceiro)
         {
-            _sistemaFinanceiro = SistemaFinanceiro;
+            _sistemaFinanceiro = sistemaFinanceiro;
         }
 
         public async Task AddSistemaFinanceiro(SistemaFinanceiro sistema)
