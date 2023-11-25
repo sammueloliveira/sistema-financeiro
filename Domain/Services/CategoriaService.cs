@@ -6,19 +6,19 @@ namespace Domain.Services
 {
     public class CategoriaService : ICategoriaService
     {
-        private readonly ICategoria _ICategoria;
+        private readonly ICategoria _categoria;
         public CategoriaService(ICategoria categoria)
         {
-            _ICategoria = categoria;
+            _categoria = categoria;
         }
         public async Task AddCategoria(Categoria categoria)
         {
-            await _ICategoria.Add(categoria);
+            await _categoria.Add(categoria);
         }
 
         public async Task UpdateCategoria(Categoria categoria)
         {
-            await _ICategoria.Update(categoria);
+            await _categoria.Update(categoria);
         }
     }
 }

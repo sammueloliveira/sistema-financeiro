@@ -11,20 +11,20 @@ namespace WebApi.Controllers
     [Authorize]
     public class UsuarioSistemaFinanceiroController : ControllerBase
     {
-        private readonly IUsuarioSistemaFinanceiro _IUsuarioSistemaFinanceiro;
-        private readonly IUsuarioSistemaFinanceiroService _IUsuarioSistemaFinanceiroService;
+        private readonly IUsuarioSistemaFinanceiro _usuarioSistemaFinanceiro;
+        private readonly IUsuarioSistemaFinanceiroService _usuarioSistemaFinanceiroService;
         public UsuarioSistemaFinanceiroController(IUsuarioSistemaFinanceiro InterfaceUsuarioSistemaFinanceiro,
             IUsuarioSistemaFinanceiroService IUsuarioSistemaFinanceiroServico)
         {
-            _IUsuarioSistemaFinanceiro = InterfaceUsuarioSistemaFinanceiro;
-            _IUsuarioSistemaFinanceiroService = IUsuarioSistemaFinanceiroServico;
+            _usuarioSistemaFinanceiro = InterfaceUsuarioSistemaFinanceiro;
+            _usuarioSistemaFinanceiroService = IUsuarioSistemaFinanceiroServico;
         }
 
         [HttpGet("/api/ListarUsuariosSistema")]
         [Produces("application/json")]
         public async Task<object> ListaSistemasUsuario(int idSistema)
         {
-            return await _IUsuarioSistemaFinanceiro.ListarUsuariosSistema(idSistema);
+            return await _usuarioSistemaFinanceiro.ListarUsuariosSistema(idSistema);
         }
 
 
@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                await _IUsuarioSistemaFinanceiroService.CadastrarUsuarioNoSistema(
+                await _usuarioSistemaFinanceiroService.CadastrarUsuarioNoSistema(
                    new UsuarioSistemaFinanceiro
                    {
                        IdSistema = idSistema,
@@ -58,9 +58,9 @@ namespace WebApi.Controllers
         {
             try
             {
-                var usuarioSistemaFinanceiro = await _IUsuarioSistemaFinanceiro.GetEntityById(id);
+                var usuarioSistemaFinanceiro = await _usuarioSistemaFinanceiro.GetEntityById(id);
 
-                await _IUsuarioSistemaFinanceiro.Delete(usuarioSistemaFinanceiro);
+                await _usuarioSistemaFinanceiro.Delete(usuarioSistemaFinanceiro);
             }
             catch (Exception)
             {

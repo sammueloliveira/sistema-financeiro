@@ -11,20 +11,21 @@ namespace Sistema_Financeiro.Controllers
     [Authorize]
     public class DespesaController : ControllerBase
     {
-        private readonly IDespesa _IDespesa;
-        private readonly IDespesaService _IDespesaService;
+        private readonly IDespesa _despesa;
+        private readonly IDespesaService _despesaService;
 
-        public DespesaController(IDespesa iDespesa, IDespesaService iDespesaService)
+        public DespesaController(IDespesa despesa, IDespesaService despesaService)
         {
-            _IDespesa = iDespesa;
-            _IDespesaService = iDespesaService;
+            _despesa = despesa;
+            _despesaService = despesaService;
         }
 
         [HttpGet("/api/ListarDespesasUsuario")]
         [Produces("application/json")]
         public async Task<IActionResult> ListarDespesasUsuario([FromQuery] string emailUsuario)
         {
-            var despesas = await _IDespesa.ListarDespesasUsuario(emailUsuario);
+            var despesas = await _despesa.ListarDespesasUsuario(emailUsuario);
+
             return Ok(despesas);
         }
 
@@ -33,7 +34,8 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> AdicionarDespesa(Despesa despesa)
         {
-            await _IDespesaService.AddDespesa(despesa);
+            await _despesaService.AddDespesa(despesa);
+
             return CreatedAtAction(nameof(ObterDespesa), new { id = despesa.Id }, despesa);
         }
 
@@ -41,13 +43,15 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> AtualizarDespesa(Despesa despesa)
         {
-            var despesaExistente = await _IDespesa.GetEntityById(despesa.Id);
+            var despesaExistente = await _despesa.GetEntityById(despesa.Id);
+
             if (despesaExistente == null)
             {
                 return NotFound();
             }
 
-            await _IDespesaService.UpdateDespesa(despesa);
+            await _despesaService.UpdateDespesa(despesa);
+
             return NoContent();
         }
 
@@ -55,7 +59,7 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> ObterDespesa(int id)
         {
-            var despesa = await _IDespesa.GetEntityById(id);
+            var despesa = await _despesa.GetEntityById(id);
             if (despesa == null)
             {
                 return NotFound();
@@ -67,13 +71,13 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> DeleteDespesa(int id)
         {
-            var despesa = await _IDespesa.GetEntityById(id);
+            var despesa = await _despesa.GetEntityById(id);
             if (despesa == null)
             {
                 return NotFound();
             }
 
-            await _IDespesa.Delete(despesa);
+            await _despesa.Delete(despesa);
             return NoContent();
         }
     }

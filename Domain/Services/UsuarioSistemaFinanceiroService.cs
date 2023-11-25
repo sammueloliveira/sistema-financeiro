@@ -6,15 +6,15 @@ namespace Domain.Services
 {
     public class UsuarioSistemaFinanceiroService : IUsuarioSistemaFinanceiroService
     {
-        private readonly IUsuarioSistemaFinanceiro _IUsuarioSistemaFinanceiro;
-        public UsuarioSistemaFinanceiroService(IUsuarioSistemaFinanceiro iUsuarioSistemaFinanceiro)
+        private readonly IUsuarioSistemaFinanceiro _usuarioSistemaFinanceiro;
+        public UsuarioSistemaFinanceiroService(IUsuarioSistemaFinanceiro usuarioSistemaFinanceiro)
         {
-            _IUsuarioSistemaFinanceiro = iUsuarioSistemaFinanceiro;
+            _usuarioSistemaFinanceiro = usuarioSistemaFinanceiro;
         }
 
         public async Task CadastrarUsuarioNoSistema(UsuarioSistemaFinanceiro usuarioSistemaFinanceiro)
         {
-            await _IUsuarioSistemaFinanceiro.Add(usuarioSistemaFinanceiro);
+            await _usuarioSistemaFinanceiro.Add(usuarioSistemaFinanceiro);
         }
     }
 }

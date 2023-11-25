@@ -6,10 +6,10 @@ namespace Domain.Services
 {
     public class SistemaFinanceiroService : ISistemaFinanceiroService
     {
-        private readonly ISistemaFinanceiro _ISistemaFinanceiro;
-        public SistemaFinanceiroService(ISistemaFinanceiro iSistemaFinanceiro)
+        private readonly ISistemaFinanceiro _sistemaFinanceiro;
+        public SistemaFinanceiroService(ISistemaFinanceiro SistemaFinanceiro)
         {
-            _ISistemaFinanceiro = iSistemaFinanceiro;
+            _sistemaFinanceiro = SistemaFinanceiro;
         }
 
         public async Task AddSistemaFinanceiro(SistemaFinanceiro sistema)
@@ -22,7 +22,7 @@ namespace Domain.Services
             sistema.Mes = data.Month;
             sistema.GerarCopiaDespesa = true;
 
-            await _ISistemaFinanceiro.Add(sistema);
+            await _sistemaFinanceiro.Add(sistema);
         }
 
         public async Task UpdateSistemaFinanceiro(SistemaFinanceiro sistema)
@@ -30,7 +30,7 @@ namespace Domain.Services
             var data = DateTime.Now;
             sistema.DiaFechamento = 1;
 
-            await _ISistemaFinanceiro.Update(sistema);
+            await _sistemaFinanceiro.Update(sistema);
         }
     }
 }

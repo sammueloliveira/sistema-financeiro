@@ -6,10 +6,10 @@ namespace Domain.Services
 {
     public class DespesaService : IDespesaService
     {
-        private readonly IDespesa _IDespesa;
-        public DespesaService(IDespesa iDespesa)
+        private readonly IDespesa _despesa;
+        public DespesaService(IDespesa despesa)
         {
-            _IDespesa = iDespesa;
+            _despesa = despesa;
         }
     
         public async Task AddDespesa(Despesa despesa)
@@ -20,7 +20,7 @@ namespace Domain.Services
             despesa.Ano = data.Year;
             despesa.Mes = data.Month;
 
-            await _IDespesa.Add(despesa);
+            await _despesa.Add(despesa);
         }
 
         public async Task UpdateDespesa(Despesa despesa)
@@ -33,7 +33,7 @@ namespace Domain.Services
                 despesa.DataPagamento = data;
             }
 
-            await _IDespesa.Update(despesa);
+            await _despesa.Update(despesa);
         }
     }
 }

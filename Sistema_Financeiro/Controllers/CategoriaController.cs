@@ -10,12 +10,12 @@ namespace Sistema_Financeiro.Controllers
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-        private readonly ICategoria _ICategoria;
-        private readonly ICategoriaService _IServiceCategoria;
-        public CategoriaController(ICategoria categoria, ICategoriaService serviceCategoria)
+        private readonly ICategoria _categoria;
+        private readonly ICategoriaService _categoriaService;
+        public CategoriaController(ICategoria categoria, ICategoriaService categoriaService)
         {
-            _ICategoria = categoria;
-            _IServiceCategoria = serviceCategoria;
+            _categoria = categoria;
+            _categoriaService = categoriaService;
         }
 
         [Authorize]
@@ -23,7 +23,7 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<Object> ListarCategoriasUsuario(string emailUsuario)
         {
-            return await _ICategoria.ListarCategoriasUsuario(emailUsuario);
+            return await _categoria.ListarCategoriasUsuario(emailUsuario);
         }
 
         [Authorize]
@@ -31,7 +31,7 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<object> AdicionarCategoria(Categoria categoria)
         {
-            await _IServiceCategoria.AddCategoria(categoria);
+            await _categoriaService.AddCategoria(categoria);
 
             return categoria;
         }
@@ -41,7 +41,7 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<object> AtualizarCategoria(Categoria categoria)
         {
-            await _IServiceCategoria.UpdateCategoria(categoria);
+            await _categoriaService.UpdateCategoria(categoria);
 
             return categoria;
         }
@@ -51,7 +51,7 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<object> ObterCategoria(int id)
         {
-            return await _ICategoria.GetEntityById(id);
+            return await _categoria.GetEntityById(id);
         }
 
         [Authorize]
@@ -61,8 +61,8 @@ namespace Sistema_Financeiro.Controllers
         {
             try
             {
-                var categoria = await _ICategoria.GetEntityById(id);
-                await _ICategoria.Delete(categoria);
+                var categoria = await _categoria.GetEntityById(id);
+                await _categoria.Delete(categoria);
 
             }
             catch (Exception)
