@@ -6,8 +6,7 @@ namespace Domain.Entities
    
         [Table("Despesa")]
         public class Despesa : Base
-        {
-
+        {   
             public decimal Valor { get; set; }
             public int Mes { get; set; }
             public int Ano { get; set; }
@@ -29,7 +28,7 @@ namespace Domain.Entities
             [ForeignKey("Categoria")]
             [Column(Order = 1)]
             public int IdCategoria { get; set; }
-            public virtual Categoria Categoria { get; set; }
+            public Categoria? Categoria { get; set; }
         }
     
 }

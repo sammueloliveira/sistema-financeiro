@@ -2,7 +2,7 @@
 
 namespace Domain.InterfacesServices
 {
-    public interface IServiceDespesa
+    public interface IDespesaService
     {
         Task AddDespesa(Despesa despesa);
         Task UpdateDespesa(Despesa despesa);

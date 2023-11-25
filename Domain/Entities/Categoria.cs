@@ -6,6 +6,6 @@ namespace Domain.Entities
     {
         [ForeignKey("SistemaFinanceiro")]
         public int IdSistema { get; set; }
-        public virtual SistemaFinanceiro SistemaFinanceiro { get; set; }
+        public SistemaFinanceiro? SistemaFinanceiro { get; set; }
     }
 }

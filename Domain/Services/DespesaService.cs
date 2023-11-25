@@ -4,10 +4,10 @@ using Domain.InterfacesServices;
 
 namespace Domain.Services
 {
-    public class ServiceDespesa : IServiceDespesa
+    public class DespesaService : IDespesaService
     {
         private readonly IDespesa _IDespesa;
-        public ServiceDespesa(IDespesa iDespesa)
+        public DespesaService(IDespesa iDespesa)
         {
             _IDespesa = iDespesa;
         }

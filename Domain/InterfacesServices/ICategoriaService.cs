@@ -2,7 +2,7 @@
 
 namespace Domain.InterfacesServices
 {
-    public interface IServiceCategoria
+    public interface ICategoriaService
     {
         Task AddCategoria(Categoria categoria);
         Task UpdateCategoria(Categoria categoria);

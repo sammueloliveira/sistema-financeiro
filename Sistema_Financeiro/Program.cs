@@ -81,7 +81,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-HelpStartup.ConfigureSingleton(builder.Services);
+HelpStartup.ConfigureScoped(builder.Services);
 
 var app = builder.Build();
 

@@ -11,8 +11,8 @@ namespace Sistema_Financeiro.Controllers
     public class CategoriaController : ControllerBase
     {
         private readonly ICategoria _ICategoria;
-        private readonly IServiceCategoria _IServiceCategoria;
-        public CategoriaController(ICategoria categoria, IServiceCategoria serviceCategoria)
+        private readonly ICategoriaService _IServiceCategoria;
+        public CategoriaController(ICategoria categoria, ICategoriaService serviceCategoria)
         {
             _ICategoria = categoria;
             _IServiceCategoria = serviceCategoria;

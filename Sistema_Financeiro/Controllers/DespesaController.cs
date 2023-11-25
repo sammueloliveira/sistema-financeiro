@@ -12,12 +12,12 @@ namespace Sistema_Financeiro.Controllers
     public class DespesaController : ControllerBase
     {
         private readonly IDespesa _IDespesa;
-        private readonly IServiceDespesa _IServiceDespesa;
+        private readonly IDespesaService _IDespesaService;
 
-        public DespesaController(IDespesa iDespesa, IServiceDespesa iServiceDespesa)
+        public DespesaController(IDespesa iDespesa, IDespesaService iDespesaService)
         {
             _IDespesa = iDespesa;
-            _IServiceDespesa = iServiceDespesa;
+            _IDespesaService = iDespesaService;
         }
 
         [HttpGet("/api/ListarDespesasUsuario")]
@@ -33,7 +33,7 @@ namespace Sistema_Financeiro.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> AdicionarDespesa(Despesa despesa)
         {
-            await _IServiceDespesa.AddDespesa(despesa);
+            await _IDespesaService.AddDespesa(despesa);
             return CreatedAtAction(nameof(ObterDespesa), new { id = despesa.Id }, despesa);
         }
 
@@ -47,7 +47,7 @@ namespace Sistema_Financeiro.Controllers
                 return NotFound();
             }
 
-            await _IServiceDespesa.UpdateDespesa(despesa);
+            await _IDespesaService.UpdateDespesa(despesa);
             return NoContent();
         }
 

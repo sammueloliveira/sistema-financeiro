@@ -4,10 +4,10 @@ using Domain.InterfacesServices;
 
 namespace Domain.Services
 {
-    public class ServiceCategoria : IServiceCategoria
+    public class CategoriaService : ICategoriaService
     {
         private readonly ICategoria _ICategoria;
-        public ServiceCategoria(ICategoria categoria)
+        public CategoriaService(ICategoria categoria)
         {
             _ICategoria = categoria;
         }

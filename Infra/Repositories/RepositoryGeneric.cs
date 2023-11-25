@@ -6,84 +6,65 @@ namespace Infra.Repositories
 {
     public class RepositoryGeneric<T> : IGeneric<T>, IDisposable where T : class
     {
-        private readonly DbContextOptions<Contexto> _dbContextOptions;
-        public RepositoryGeneric()
+        public readonly Contexto _contexto;
+
+        public RepositoryGeneric(Contexto contexto)
         {
-            _dbContextOptions = new DbContextOptions<Contexto>();
+            _contexto = contexto;
         }
+
         public async Task Add(T objeto)
         {
-            using (var data = new Contexto(_dbContextOptions))
-            {
-                await data.Set<T>().AddAsync(objeto);
-                await data.SaveChangesAsync();
-            }
+            await _contexto.Set<T>().AddAsync(objeto);
+            await _contexto.SaveChangesAsync();
         }
 
         public async Task Delete(T objeto)
         {
-            using (var data = new Contexto(_dbContextOptions))
-            {
-                data.Set<T>().Remove(objeto);
-                await data.SaveChangesAsync();
-            }
+            _contexto.Set<T>().Remove(objeto);
+            await _contexto.SaveChangesAsync();
         }
+
         public async Task Update(T objeto)
         {
-            using (var data = new Contexto(_dbContextOptions))
-            {
-                data.Set<T>().Update(objeto);
-                await data.SaveChangesAsync();
-            }
+            _contexto.Set<T>().Update(objeto);
+            await _contexto.SaveChangesAsync();
         }
 
         public async Task<T> GetEntityById(int id)
         {
-            using (var data = new Contexto(_dbContextOptions))
-            {
-                return await data.Set<T>().FindAsync(id);
-
-            }
+            return await _contexto.Set<T>().FindAsync(id);
         }
 
         public async Task<List<T>> List()
         {
-            using (var data = new Contexto(_dbContextOptions))
-            {
-                return await data.Set<T>().AsNoTracking().ToListAsync();
-
-            }
+            return await _contexto.Set<T>().AsNoTracking().ToListAsync();
         }
 
+        #region IDisposable Support
 
-        private bool disposedValue;
+        private bool disposedValue = false; 
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects)
+                    
+                    _contexto.Dispose();
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
                 disposedValue = true;
             }
         }
 
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~RepositoryGeneric()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
-
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        #endregion
     }
 }
