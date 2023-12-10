@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Sistema_Financeiro.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/despesa")]
     [ApiController]
     [Authorize]
     public class DespesaController : ControllerBase
@@ -20,7 +20,7 @@ namespace Sistema_Financeiro.Controllers
             _despesaService = despesaService;
         }
 
-        [HttpGet("/api/ListarDespesasUsuario")]
+        [HttpGet("listar-despesas-usuario")]
         [Produces("application/json")]
         public async Task<IActionResult> ListarDespesasUsuario([FromQuery] string emailUsuario)
         {
@@ -30,7 +30,7 @@ namespace Sistema_Financeiro.Controllers
         }
 
 
-        [HttpPost("/api/AdicionarDespesa")]
+        [HttpPost("adicionar-despesa")]
         [Produces("application/json")]
         public async Task<IActionResult> AdicionarDespesa(Despesa despesa)
         {
@@ -39,7 +39,7 @@ namespace Sistema_Financeiro.Controllers
             return CreatedAtAction(nameof(ObterDespesa), new { id = despesa.Id }, despesa);
         }
 
-        [HttpPut("/api/AtualizarDespesa")]
+        [HttpPut("atualizar-despesa")]
         [Produces("application/json")]
         public async Task<IActionResult> AtualizarDespesa(Despesa despesa)
         {
@@ -55,7 +55,7 @@ namespace Sistema_Financeiro.Controllers
             return NoContent();
         }
 
-        [HttpGet("/api/ObterDespesa")]
+        [HttpGet("obter-despesa")]
         [Produces("application/json")]
         public async Task<IActionResult> ObterDespesa(int id)
         {
@@ -67,7 +67,7 @@ namespace Sistema_Financeiro.Controllers
             return Ok(despesa);
         }
 
-        [HttpDelete("/api/DeleteDespesa")]
+        [HttpDelete("delete-despesa")]
         [Produces("application/json")]
         public async Task<IActionResult> DeleteDespesa(int id)
         {

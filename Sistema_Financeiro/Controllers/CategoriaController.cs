@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Sistema_Financeiro.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/categoria")]
     [ApiController]
     public class CategoriaController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Sistema_Financeiro.Controllers
         }
 
         [Authorize]
-        [HttpGet("/api/ListarCategoriasUsuario")]
+        [HttpGet("listar-categorias-usuario")]
         [Produces("application/json")]
         public async Task<Object> ListarCategoriasUsuario(string emailUsuario)
         {
@@ -27,7 +27,7 @@ namespace Sistema_Financeiro.Controllers
         }
 
         [Authorize]
-        [HttpPost("/api/AdicionarCategoria")]
+        [HttpPost("adicionar-categoria")]
         [Produces("application/json")]
         public async Task<object> AdicionarCategoria(Categoria categoria)
         {
@@ -37,7 +37,7 @@ namespace Sistema_Financeiro.Controllers
         }
 
         [Authorize]
-        [HttpPut("/api/AtualizarCategoria")]
+        [HttpPut("atualizar-categoria")]
         [Produces("application/json")]
         public async Task<object> AtualizarCategoria(Categoria categoria)
         {
@@ -47,7 +47,7 @@ namespace Sistema_Financeiro.Controllers
         }
 
         [Authorize]
-        [HttpGet("/api/ObterCategoria")]
+        [HttpGet("obter-categoria")]
         [Produces("application/json")]
         public async Task<object> ObterCategoria(int id)
         {
@@ -55,7 +55,7 @@ namespace Sistema_Financeiro.Controllers
         }
 
         [Authorize]
-        [HttpDelete("/api/DeleteCategoria")]
+        [HttpDelete("delete-categoria")]
         [Produces("application/json")]
         public async Task<object> DeleteCategoria(int id)
         {

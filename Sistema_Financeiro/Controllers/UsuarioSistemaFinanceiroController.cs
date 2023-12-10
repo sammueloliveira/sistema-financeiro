@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/usuario-sistema-financeiro")]
     [ApiController]
     [Authorize]
     public class UsuarioSistemaFinanceiroController : ControllerBase
@@ -20,7 +20,7 @@ namespace WebApi.Controllers
             _usuarioSistemaFinanceiroService = IUsuarioSistemaFinanceiroServico;
         }
 
-        [HttpGet("/api/ListarUsuariosSistema")]
+        [HttpGet("listar-usuarios-sistema")]
         [Produces("application/json")]
         public async Task<object> ListaSistemasUsuario(int idSistema)
         {
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost("/api/CadastrarUsuarioNoSistema")]
+        [HttpPost("cadastrar-usuario-sistema")]
         [Produces("application/json")]
         public async Task<object> CadastrarUsuarioNoSistema(int idSistema, string emailUsuario)
         {
@@ -52,7 +52,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpDelete("/api/DeleteUsuarioSistemaFinanceiro")]
+        [HttpDelete("delete-usuario-sistema-financeiro")]
         [Produces("application/json")]
         public async Task<object> DeleteUsuarioSistemaFinanceiro(int id)
         {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/sistema-financeiro")]
     [ApiController]
     [Authorize]
     public class SistemaFinanceirosController : ControllerBase
@@ -20,14 +20,14 @@ namespace WebApi.Controllers
             _sistemaFinanceiroService = sistemaFinanceiroServico;
         }
 
-        [HttpGet("/api/ListaSistemasUsuario")]
+        [HttpGet("lista-sistemas-usuario")]
         [Produces("application/json")]
         public async Task<object> ListaSistemasUsuario(string emailUsuario)
         {
             return await _sistemaFinanceiro.ListaSistemasUsuario(emailUsuario);
         }
 
-        [HttpPost("/api/AdicionarSistemaFinanceiro")]
+        [HttpPost("adicionar-sistema-financeiro")]
         [Produces("application/json")]
         public async Task<object> AdicionarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
         {
@@ -36,7 +36,7 @@ namespace WebApi.Controllers
             return Task.FromResult(sistemaFinanceiro);
         }
 
-        [HttpPut("/api/AtualizarSistemaFinanceiro")]
+        [HttpPut("atualizar-sistema-financeiro")]
         [Produces("application/json")]
         public async Task<object> AtualizarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
         {
@@ -46,7 +46,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet("/api/ObterSistemaFinanceiro")]
+        [HttpGet("obter-sistema-financeiro")]
         [Produces("application/json")]
         public async Task<object> ObterSistemaFinanceiro(int id)
         {
@@ -54,7 +54,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpDelete("/api/DeleteSistemaFinanceiro")]
+        [HttpDelete("delete-sistema-financeiro")]
         [Produces("application/json")]
         public async Task<object> DeleteSistemaFinanceiro(int id)
         {
