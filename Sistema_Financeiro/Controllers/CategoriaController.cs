@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using APIs.Models.DTOs;
+using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using Domain.InterfacesServices;
 using Microsoft.AspNetCore.Authorization;
@@ -12,10 +14,12 @@ namespace Sistema_Financeiro.Controllers
     {
         private readonly ICategoria _categoria;
         private readonly ICategoriaService _categoriaService;
-        public CategoriaController(ICategoria categoria, ICategoriaService categoriaService)
+        private readonly IMapper _mapper;
+        public CategoriaController(ICategoria categoria, ICategoriaService categoriaService, IMapper mapper)
         {
             _categoria = categoria;
             _categoriaService = categoriaService;
+            _mapper = mapper;
         }
 
         [Authorize]
@@ -29,21 +33,28 @@ namespace Sistema_Financeiro.Controllers
         [Authorize]
         [HttpPost("adicionar-categoria")]
         [Produces("application/json")]
-        public async Task<object> AdicionarCategoria(Categoria categoria)
+        public async Task<object> AdicionarCategoria(CategoriaDTO categoriaDto)
         {
+            var categoria = _mapper.Map<Categoria>(categoriaDto);
             await _categoriaService.AddCategoria(categoria);
 
-            return categoria;
+            return Ok(categoria);
         }
 
         [Authorize]
         [HttpPut("atualizar-categoria")]
         [Produces("application/json")]
-        public async Task<object> AtualizarCategoria(Categoria categoria)
+        public async Task<object> AtualizarCategoria(int id, CategoriaDTO categoriaDto)
         {
-            await _categoriaService.UpdateCategoria(categoria);
+            if (id != categoriaDto.Id)
+            {
+                return BadRequest();
+            }
 
-            return categoria;
+            var carreira = _mapper.Map<Categoria>(categoriaDto);
+            await _categoria.Update(carreira);
+
+            return NoContent();
         }
 
         [Authorize]
@@ -62,6 +73,7 @@ namespace Sistema_Financeiro.Controllers
             try
             {
                 var categoria = await _categoria.GetEntityById(id);
+
                 await _categoria.Delete(categoria);
 
             }

@@ -1,12 +1,17 @@
 ﻿using Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
    
         [Table("Despesa")]
-        public class Despesa : Base
-        {   
+        public class Despesa 
+        {
+            public int Id { get; set; }
+
+            [Display(Name = "Nome")]
+            public string? Nome { get; set; }
             public decimal Valor { get; set; }
             public int Mes { get; set; }
             public int Ano { get; set; }
@@ -26,7 +31,6 @@ namespace Domain.Entities
             public bool DespesaAntrasada { get; set; }
 
             [ForeignKey("Categoria")]
-            [Column(Order = 1)]
             public int IdCategoria { get; set; }
             public Categoria? Categoria { get; set; }
         }

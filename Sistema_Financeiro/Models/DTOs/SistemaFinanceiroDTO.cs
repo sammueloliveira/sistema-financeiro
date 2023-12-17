@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Domain.Entities
+﻿namespace APIs.Models.DTOs
 {
-    public class SistemaFinanceiro 
+    public class SistemaFinanceiroDTO
     {
         public int Id { get; set; }
-
-        [Display(Name = "Nome")]
         public string? Nome { get; set; }
         public int Mes { get; set; }
         public int Ano { get; set; }

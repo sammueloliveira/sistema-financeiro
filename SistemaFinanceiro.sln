@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{E8373D24-8A5A-4D4A-99CE-9EB11F461A04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaFinanceiro.APIs", "Sistema_Financeiro\SistemaFinanceiro.APIs.csproj", "{8EE5B2AC-391D-4577-8EFE-2D31615BA2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIs", "Sistema_Financeiro\APIs.csproj", "{8EE5B2AC-391D-4577-8EFE-2D31615BA2F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{7129A476-AAD7-4CE7-B6A9-CF50939C2DA3}"
 EndProject

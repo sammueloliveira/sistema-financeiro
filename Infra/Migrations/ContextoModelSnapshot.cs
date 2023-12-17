@@ -29,7 +29,6 @@ namespace Infra.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -64,14 +63,12 @@ namespace Infra.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("IdCategoria")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     b.Property<int>("Mes")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("Pago")
@@ -115,7 +112,6 @@ namespace Infra.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

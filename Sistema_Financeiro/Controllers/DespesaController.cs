@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using APIs.Models.DTOs;
+using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using Domain.InterfacesServices;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +15,13 @@ namespace Sistema_Financeiro.Controllers
     {
         private readonly IDespesa _despesa;
         private readonly IDespesaService _despesaService;
+        private readonly IMapper _mapper;
 
-        public DespesaController(IDespesa despesa, IDespesaService despesaService)
+        public DespesaController(IDespesa despesa, IDespesaService despesaService, IMapper mapper)
         {
             _despesa = despesa;
             _despesaService = despesaService;
+            _mapper = mapper;
         }
 
         [HttpGet("listar-despesas-usuario")]
@@ -32,27 +36,28 @@ namespace Sistema_Financeiro.Controllers
 
         [HttpPost("adicionar-despesa")]
         [Produces("application/json")]
-        public async Task<IActionResult> AdicionarDespesa(Despesa despesa)
+        public async Task<IActionResult> AdicionarDespesa(DespesaDTO despesaDto)
         {
+            var despesa = _mapper.Map<Despesa>(despesaDto);
             await _despesaService.AddDespesa(despesa);
 
-            return CreatedAtAction(nameof(ObterDespesa), new { id = despesa.Id }, despesa);
+            return Ok(despesa);
         }
 
         [HttpPut("atualizar-despesa")]
         [Produces("application/json")]
-        public async Task<IActionResult> AtualizarDespesa(Despesa despesa)
+        public async Task<IActionResult> AtualizarDespesa(int id, DespesaDTO despesadto)
         {
-            var despesaExistente = await _despesa.GetEntityById(despesa.Id);
+           if(id != despesadto.Id)
+           {
+                return BadRequest();
+           }
 
-            if (despesaExistente == null)
-            {
-                return NotFound();
-            }
+            var despesa = _mapper.Map<Despesa>(despesadto);
+            await _despesa.Update(despesa);
 
-            await _despesaService.UpdateDespesa(despesa);
+            return Ok(despesa);
 
-            return NoContent();
         }
 
         [HttpGet("obter-despesa")]

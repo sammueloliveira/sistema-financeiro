@@ -13,11 +13,13 @@ namespace WebApi.Controllers
     {
         private readonly IUsuarioSistemaFinanceiro _usuarioSistemaFinanceiro;
         private readonly IUsuarioSistemaFinanceiroService _usuarioSistemaFinanceiroService;
+       
         public UsuarioSistemaFinanceiroController(IUsuarioSistemaFinanceiro InterfaceUsuarioSistemaFinanceiro,
             IUsuarioSistemaFinanceiroService IUsuarioSistemaFinanceiroServico)
         {
             _usuarioSistemaFinanceiro = InterfaceUsuarioSistemaFinanceiro;
             _usuarioSistemaFinanceiroService = IUsuarioSistemaFinanceiroServico;
+            
         }
 
         [HttpGet("listar-usuarios-sistema")]

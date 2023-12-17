@@ -1,3 +1,4 @@
+using APIs.Models.Mapping;
 using HelpConfig.HelpStartup;
 using Infra.Infra;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -82,6 +83,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 HelpStartup.ConfigureScoped(builder.Services);
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 

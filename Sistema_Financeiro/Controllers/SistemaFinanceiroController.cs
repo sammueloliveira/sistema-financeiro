@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using APIs.Models.DTOs;
+using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 using Domain.InterfacesServices;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +15,13 @@ namespace WebApi.Controllers
     {
         private readonly ISistemaFinanceiro _sistemaFinanceiro;
         private readonly ISistemaFinanceiroService _sistemaFinanceiroService;
+        private readonly IMapper _mapper;
         public SistemaFinanceirosController(ISistemaFinanceiro sistemaFinanceiro,
-            ISistemaFinanceiroService sistemaFinanceiroServico)
+            ISistemaFinanceiroService sistemaFinanceiroServico, IMapper mapper)
         {
             _sistemaFinanceiro = sistemaFinanceiro;
             _sistemaFinanceiroService = sistemaFinanceiroServico;
+            _mapper = mapper;
         }
 
         [HttpGet("lista-sistemas-usuario")]
@@ -29,20 +33,27 @@ namespace WebApi.Controllers
 
         [HttpPost("adicionar-sistema-financeiro")]
         [Produces("application/json")]
-        public async Task<object> AdicionarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
+        public async Task<object> AdicionarSistemaFinanceiro(SistemaFinanceiroDTO sistemaFinanceiroDto)
         {
+            var sistemaFinanceiro = _mapper.Map<SistemaFinanceiro>(sistemaFinanceiroDto);
             await _sistemaFinanceiroService.AddSistemaFinanceiro(sistemaFinanceiro);
 
-            return Task.FromResult(sistemaFinanceiro);
+            return Ok(sistemaFinanceiro);
         }
 
         [HttpPut("atualizar-sistema-financeiro")]
         [Produces("application/json")]
-        public async Task<object> AtualizarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
+        public async Task<object> AtualizarSistemaFinanceiro(int id, SistemaFinanceiroDTO sistemaFinanceiroDto)
         {
+            if(id != sistemaFinanceiroDto.Id)
+            {
+                return BadRequest();
+            }
+
+            var sistemaFinanceiro = _mapper.Map<SistemaFinanceiro>(sistemaFinanceiroDto);
             await _sistemaFinanceiroService.UpdateSistemaFinanceiro(sistemaFinanceiro);
 
-            return Task.FromResult(sistemaFinanceiro);
+            return Ok(sistemaFinanceiro);
         }
 
 
